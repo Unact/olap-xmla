@@ -1,0 +1,3 @@
+module OlapXmla
+  VERSION = "0.0.2"
+end
