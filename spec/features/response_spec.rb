@@ -13,14 +13,13 @@ RSpec.describe OlapXmla::Response do
     end
 
     @test_client = OlapXmla.clients[:test]
-    @test_measures = ['[Тип Бонуса].[Типы бонусов].[Тип бонуса].&[45]','[Тип Бонуса].[Типы бонусов].[Тип бонуса].&[44]']
-    @test_dimensions = ['[Исполнитель].[Отделы].[Сотрудник].&[2125]', '[Исполнитель].[Отделы].[Сотрудник].&[1985]']
+    @test_measures = ['[Measures].[Бонус за DEV]']
+    @test_dimensions = ['[Дата].[Календарь].DEFAULTMEMBER']
     test_mdx = "
       SELECT
         { #{@test_measures.join(',')}  } ON COLUMNS ,
         { #{@test_dimensions.join(',')} } ON ROWS
-      FROM [Jira]
-      WHERE ( [Дата].[Календарь].[Месяц].&[201611], [Measures].[Бонус] )"
+      FROM [Jira]"
     @mdx_response = @test_client.execute_mdx test_mdx
   end
 
