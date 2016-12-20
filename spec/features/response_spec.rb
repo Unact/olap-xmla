@@ -19,7 +19,7 @@ RSpec.describe OlapXmla::Response do
       SELECT
         { #{@test_measures.join(',')}  } ON COLUMNS ,
         { #{@test_dimensions.join(',')} } ON ROWS
-      FROM [Jira]"
+      FROM [#{ENV['TEST_CUBE']}]"
     @mdx_response = @test_client.execute_mdx test_mdx
   end
 

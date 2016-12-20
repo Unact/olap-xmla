@@ -2,7 +2,7 @@ require 'helpers/spec_helper'
 
 RSpec.describe OlapXmla::Client do
   before :each do
-    @test_mdx = "SELECT {} ON COLUMNS, {} ON ROWS FROM [Jira]"
+    @test_mdx = "SELECT {} ON COLUMNS, {} ON ROWS FROM [#{ENV['TEST_CUBE']}]"
     setup_default_client_propeties
   end
 
