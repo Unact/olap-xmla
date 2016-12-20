@@ -80,10 +80,14 @@ module OlapXmla
         [axis[:tuples][:tuple]].flatten.collect do |tuple|
           axis_values = tuple[:member]
           {
-            name: axis_values.is_a?(Array) ? axis_values.collect{|value| value[:u_name]}.join('; ') : axis_values[:u_name],
-            caption: axis_values.is_a?(Array) ? axis_values.collect{|value| value[:caption]}.join('; ') : axis_values[:caption]
+            name: axis_values_prop(axis_values, :u_name),
+            caption: axis_values_prop(axis_values, :caption)
           }
         end
+      end
+
+      def axis_values_prop axis_values, prop
+        axis_values.is_a?(Array) ? axis_values.collect{|value| value[prop]}.join('; ') : axis_values[prop]
       end
   end
 end

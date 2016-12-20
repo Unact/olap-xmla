@@ -6,7 +6,6 @@ Gem::Specification.new do |spec|
   spec.name          = "olap_xmla"
   spec.version       = OlapXmla::VERSION
   spec.authors       = ["Unact"]
-  spec.email         = ["y.barkovskij@unact.com"]
   spec.summary       = %q{OLAP XMLA gem}
   spec.description   = %q{Make MDX queries to OLAP databases using XMLA}
   spec.homepage      = "https://github.com/Unact/olap-xmla"

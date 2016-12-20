@@ -38,6 +38,6 @@ module OlapXmla
 
   # Used for finding a client by its cube name
   def self.find_client_by_cube cube_name
-    self.clients.select{|key, value| value.cube_name == cube_name}.values[0]
+    self.clients.values.find{|value| value.cube_name == cube_name}
   end
 end
