@@ -16,5 +16,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "dotenv"
   spec.add_development_dependency "rspec"
-  spec.add_runtime_dependency "savon", '~> 2.5.1'
+  spec.add_runtime_dependency "savon"
 end

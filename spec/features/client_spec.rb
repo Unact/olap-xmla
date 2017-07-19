@@ -54,4 +54,3 @@ RSpec.describe OlapXmla::Client do
     end
   end
 end
-
