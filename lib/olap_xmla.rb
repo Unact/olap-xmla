@@ -1,7 +1,8 @@
 require "olap_xmla/version"
 require "olap_xmla/client"
-require "olap_xmla/response"
 require "olap_xmla/execution_error"
+require "olap_xmla/parser"
+require "olap_xmla/response"
 
 module OlapXmla
   @@clients = {}

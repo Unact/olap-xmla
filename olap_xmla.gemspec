@@ -11,10 +11,10 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/Unact/olap-xmla"
   spec.license       = "MIT"
 
-  spec.files         = Dir["{lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  spec.files         = Dir["{lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   spec.test_files    = Dir["spec/**/*"]
 
   spec.add_development_dependency "dotenv"
   spec.add_development_dependency "rspec"
-  spec.add_runtime_dependency "savon"
+  spec.add_dependency "savon"
 end

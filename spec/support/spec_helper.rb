@@ -4,5 +4,5 @@ require "dotenv"
 Dotenv.load
 
 RSpec.configure do |config|
- config.order = "random"
+  config.order = "random"
 end

@@ -1,4 +1,4 @@
-require 'helpers/spec_helper'
+require 'support/spec_helper'
 
 RSpec.describe OlapXmla::Client do
   before :each do
