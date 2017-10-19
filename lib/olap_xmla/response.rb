@@ -2,10 +2,11 @@ module OlapXmla
   class Response
     include OlapXmla::Parser
 
-    attr_reader :mdx, :response
+    attr_reader :mdx, :response, :savon_response
 
-    def initialize response, mdx
-      @response = response
+    def initialize savon_response, mdx
+      @savon_response = savon_response
+      @response = savon_response.body[:execute_response][:return][:root]
       @mdx = mdx
     end
 

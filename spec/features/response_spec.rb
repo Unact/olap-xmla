@@ -23,6 +23,9 @@ RSpec.describe OlapXmla::Response do
     @mdx_response = @test_client.execute_mdx test_mdx
   end
 
+  it 'should have saved savon response' do
+    expect(@mdx_response.savon_response.is_a?(Savon::Response)).to eq(true)
+  end
 
   it 'should have data' do
     expect(@mdx_response.has_data?).to eq(true)

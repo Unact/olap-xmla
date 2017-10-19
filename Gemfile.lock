@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    olap_xmla (0.0.3)
+    olap_xmla (0.0.4)
       savon
 
 GEM

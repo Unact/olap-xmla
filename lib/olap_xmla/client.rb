@@ -2,7 +2,7 @@ require "savon"
 
 module OlapXmla
   class Client
-    attr_reader :data_source, :catalog, :savon_client, :options, :name
+    attr_reader :data_source, :catalog, :savon_client, :options, :name, :server
 
     def initialize name, server, data_source, catalog, options
       options ||= {}
@@ -26,8 +26,8 @@ module OlapXmla
         }
         raise OlapXmla::ExecutionError, error_data
       end
-
-      OlapXmla::Response.new result.body[:execute_response][:return][:root], mdx
+      
+      OlapXmla::Response.new result, mdx
     end
 
     def cube_name
