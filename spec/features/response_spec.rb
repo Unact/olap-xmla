@@ -1,4 +1,4 @@
-require 'helpers/spec_helper'
+require 'support/spec_helper'
 
 RSpec.describe OlapXmla::Response do
   before :each do
@@ -56,16 +56,6 @@ RSpec.describe OlapXmla::Response do
           expect(column).to eq(@mdx_response.dimensions[row_index-1][:caption])
         end
       end
-    end
-  end
-
-  it 'should return mapped rows' do
-    column_names_hash = (0..@mdx_response.matrix[0].length-1).collect do |column_number|
-      "column_#{column_number}".to_sym
-    end
-
-    @mdx_response.map_columns.each.with_index do |row, index|
-      expect(row.keys).to eq(column_names_hash)
     end
   end
 end

@@ -1,4 +1,4 @@
-require 'helpers/spec_helper'
+require 'support/spec_helper'
 
 RSpec.describe OlapXmla do
   context '#find_client_by_cube method' do

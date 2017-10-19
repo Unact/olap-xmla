@@ -1,5 +1,6 @@
 module OlapXmla
   class Response
+    include OlapXmla::Parser
 
     attr_reader :mdx, :response
 
@@ -19,7 +20,7 @@ module OlapXmla
     #    :caption display name of measure
     #  }
     def measures
-      axis_info "Axis0"
+      axis "Axis0"
     end
 
     # Collection of dimensions in response
@@ -28,7 +29,7 @@ module OlapXmla
     #    :caption display name of dimension
     #  }
     def dimensions
-      axis_info "Axis1"
+      axis "Axis1"
     end
 
     # Collection of rows with formatted values
@@ -42,7 +43,7 @@ module OlapXmla
           value = nil
 
           if non_empty_cell = cells.find{|cell| cell[:@cell_ordinal].to_i == cell_index }
-            value = non_empty_cell[:fmt_value]
+            value = Parser.parse_value non_empty_cell[:value], non_empty_cell[:value].attributes['xsi:type']
           end
           cell_index+=1
 
@@ -59,35 +60,19 @@ module OlapXmla
       end.unshift(rows_with_column_names[0].unshift(nil))
     end
 
-    # Maps columns for mdx matrix
-    #  [{
-    #     :column_<column_number> => column_value
-    #  }]
-    def map_columns
-      matrix.collect do |row|
-        result = {}
-        row.each.with_index{|value, index| result["column_#{index}".to_sym] = value }
-        result
-      end
-    end
-
     private
-      def axis_info axis_name
+      def axis axis_name
         axis = response[:axes][:axis].find{ |el| el[:@name] == axis_name }
-
+        axis_info = response[:olap_info][:axes_info][:axis_info].find {|el| el[:@name] == axis_name}
         return [] if axis[:tuples].nil?
-
         [axis[:tuples][:tuple]].flatten.collect do |tuple|
-          axis_values = tuple[:member]
+          axis_value = tuple[:member]
+
           {
-            name: axis_values_prop(axis_values, :u_name),
-            caption: axis_values_prop(axis_values, :caption)
+            name: Parser.parse_value(axis_value[:u_name], axis_info[:hierarchy_info][:u_name][:@type]),
+            caption: Parser.parse_value(axis_value[:caption], axis_info[:hierarchy_info][:caption][:@type])
           }
         end
-      end
-
-      def axis_values_prop axis_values, prop
-        axis_values.is_a?(Array) ? axis_values.collect{|value| value[prop]}.join('; ') : axis_values[prop]
       end
   end
 end

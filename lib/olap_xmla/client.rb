@@ -58,11 +58,11 @@ module OlapXmla
       # Can be changed by passing options
       def default_options
         {
-          :open_timeout => 300,
-          :read_timeout => 300,
-          :raise_errors => false,
-          :endpoint => @server,
-          :namespace => "urn:schemas-microsoft-com:xml-analysis"
+          open_timeout: 300,
+          read_timeout: 300,
+          raise_errors: false,
+          endpoint: @server,
+          namespace: "urn:schemas-microsoft-com:xml-analysis"
         }
       end
   end
@@ -71,6 +71,3 @@ module OlapXmla
     attr_accessor :name, :server, :data_source, :catalog, :options
   end
 end
-
-
-
