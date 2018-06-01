@@ -16,6 +16,8 @@ RSpec.describe OlapXmla::Parser do
         expect(OlapXmla::Parser.parse_value('-1.0', 'xsd:decimal')).to eq(-1.0)
         expect(OlapXmla::Parser.parse_value('1.2', 'xsd:double')).to eq(1.2)
         expect(OlapXmla::Parser.parse_value('1.E', 'xsd:float')).to eq(1.0)
+        expect(OlapXmla::Parser.parse_value('2.E2', 'xsd:float')).to eq(200.0)
+        expect(OlapXmla::Parser.parse_value('2.0E2', 'xsd:float')).to eq(200.0)
         expect(OlapXmla::Parser.parse_value('NaN', 'xsd:float').nan?).to eq(true)
       end
 
