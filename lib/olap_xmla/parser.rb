@@ -10,7 +10,7 @@ module OlapXmla
       when 'short', 'int', 'long', 'unsignedShort', 'unsignedInt', 'unsignedLong'
         val.to_i
       when 'decimal', 'double', 'float'
-        val != 'NaN' ? val.to_f : Float::NAN
+        val != 'NaN' ? val.gsub('.E', '.0E').to_f : Float::NAN
       when 'date'
         Date.parse(val)
       when 'time'
